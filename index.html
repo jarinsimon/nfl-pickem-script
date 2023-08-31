@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <title>NFL Pickem Script</title>
+    </head>
+    <body>
+        <div>
+            <h4>Number of Players in Pickem League:</h4>
+            <select id="numberDropdown">
+                <option value="-">-</option>
+            </select>
+    
+        <button id='generateCards'>Generate Cards</button>
+        </div>
+        <div id="cardsContainer"></div>
+        <form id="teams">
+            <input type="submit" value="Submit">
+        </form>
+        <div id="checkbox-container"></div>
+        <script>
+            var teamJSON = [];
+            const form = document.getElementById("teams");
+            
+            document.addEventListener("DOMContentLoaded", function (){
+                fetch("config.json")
+                .then(response => response.json())
+                .then(data => {
+                    const checkboxContainer = document.getElementById("checkbox-container");
+                    data.response.forEach(item=>{
+                        var teamJSONObject = {
+                            "teamID": item.team.id,
+                            "teamName": item.team.name,
+                            "teamNickName": item.team.name.split(" ").pop(),
+                            "teamWins": item.won,
+                            "teamLosses": item.lost,
+                            "teamTies": item.ties
+                        };
+                        teamJSON.push(teamJSONObject);
+                        
+                    });
+                    teamJSON.sort((a,b) => a.teamName.localeCompare(b.teamName));
+                    teamJSON.forEach(item=>{
+                        const itemDiv = document.createElement("div");
+                        itemDiv.className = "item";
+
+                        const checkbox = document.createElement("input");
+                        checkbox.type = "checkbox";
+                        checkbox.id = `${item.teamNickName}-checkbox`;
+
+                        const label = document.createElement("label");
+                        label.textContent = item.teamName;
+                        label.setAttribute("for", `${item.teamNickName}-checkbox`);
+
+                        itemDiv.appendChild(checkbox);
+                        itemDiv.appendChild(label);
+                        checkboxContainer.appendChild(itemDiv);
+                    })
+                })
+                .catch(error => console.error("Error fetching JSON data:", error));
+            });
+        </script>
+
+        <script src="/client.js"></script>
+    </body>
+</html>
