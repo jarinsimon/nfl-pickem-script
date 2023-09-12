@@ -19,11 +19,12 @@
         <form id="teams">
             <input type="submit" value="Submit">
         </form>
-        <div id="checkbox-container"></div>
+        <div id="checkbox-container" class="checkbox-grid"></div>
         <script>
             var teamJSON = [];
             const form = document.getElementById("teams");
             
+            //Create checkbox container
             document.addEventListener("DOMContentLoaded", function (){
                 fetch("config.json")
                 .then(response => response.json())
@@ -42,23 +43,47 @@
                         
                     });
                     teamJSON.sort((a,b) => a.teamName.localeCompare(b.teamName));
-                    teamJSON.forEach(item=>{
-                        const itemDiv = document.createElement("div");
-                        itemDiv.className = "item";
+ 
+                    for (let row = 0; row < 8; row++){
+                        for (let col = 0; col < 4; col++){
+                            const index = col * 8 + row;
+                            const item = teamJSON[index];
 
-                        const checkbox = document.createElement("input");
-                        checkbox.type = "checkbox";
-                        checkbox.id = `${item.teamNickName}-checkbox`;
-                        checkbox.name = `${item.teamName}`;
+                            const itemDiv = document.createElement("div");
+                            itemDiv.className = "item";
 
-                        const label = document.createElement("label");
-                        label.textContent = item.teamName;
-                        label.setAttribute("for", `${item.teamNickName}-checkbox`);
+                            const checkbox = document.createElement("input");
+                            checkbox.type = "checkbox";
+                            checkbox.id = `${item.teamNickName}-checkbox`;
+                            checkbox.name = `${item.teamName}`;
 
-                        itemDiv.appendChild(checkbox);
-                        itemDiv.appendChild(label);
-                        checkboxContainer.appendChild(itemDiv);
-                    })
+                            const label = document.createElement("label");
+                            label.textContent = item.teamName;
+                            label.setAttribute("for", `${item.teamNickName}-checkbox`);
+
+                            itemDiv.appendChild(checkbox);
+                            itemDiv.appendChild(label);
+                            checkboxContainer.appendChild(itemDiv);
+
+                        }
+                    }
+                    // teamJSON.forEach(item=>{
+                    //     const itemDiv = document.createElement("div");
+                    //     itemDiv.className = "item";
+
+                    //     const checkbox = document.createElement("input");
+                    //     checkbox.type = "checkbox";
+                    //     checkbox.id = `${item.teamNickName}-checkbox`;
+                    //     checkbox.name = `${item.teamName}`;
+
+                    //     const label = document.createElement("label");
+                    //     label.textContent = item.teamName;
+                    //     label.setAttribute("for", `${item.teamNickName}-checkbox`);
+
+                    //     itemDiv.appendChild(checkbox);
+                    //     itemDiv.appendChild(label);
+                    //     checkboxContainer.appendChild(itemDiv);
+                    // })
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
             });
