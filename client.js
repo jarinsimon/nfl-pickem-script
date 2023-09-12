@@ -25,12 +25,12 @@ function createCard(cardNumber, numInputFields){
     card.className = 'card';
     card.innerHTML = `
     <div id="card-top">
-        <h2>Player #${cardNumber}</h2>
-        <label for="player-${cardNumber}-name">Player Name:</label>
+        <h3>Player #${cardNumber}</h3>
     </div>
     <div id="card-teams">
     </div>
     `;
+    // <label for="player-${cardNumber}-name">Player Name:</label>
     //<input type="text" id="player-${cardNumber}-name" name="player-${cardNumber}-name" placeholder="Player ${cardNumber} Name"></input>
 
     const cardTeams = card.querySelector("#card-teams");
@@ -62,26 +62,32 @@ generateCardsButton.addEventListener('click', (event) => {
     }
 });
 
-
 const checkboxes = document.getElementById("checkbox-container");
 const valueToInputMap = {};
+var inputCounter = 0;
 
+//When checkbox is clicked
 checkboxes.addEventListener('click', (event) =>{
     if (event.target.type === 'checkbox'){
         const checkbox = event.target;
         var firstAvail = findFirstAvailableField();
 
+        //Add value of checkbox to input field
         if (event.target.checked){
             const targetField = document.getElementById(`input-${firstAvail}`);
             valueToInputMap[checkbox.name] = firstAvail;
             targetField.value = checkbox.name;
+            inputCounter++;
         } else {
+        //Remove value of checkbox to input field
             const targetField = document.getElementById(`input-${valueToInputMap[checkbox.name]}`);
             targetField.value = '';
+            inputCounter--;
         }
     }
 });
 
+//Return value of the first
 function findFirstAvailableField(){
     for (let i = 1; i <= 32; i++){
         const field = document.getElementById(`input-${i}`);
