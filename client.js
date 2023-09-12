@@ -25,7 +25,7 @@ function createCard(cardNumber, numInputFields){
     card.className = 'card';
     card.innerHTML = `
     <div id="card-top">
-        <h3>Player #${cardNumber}</h3>
+        <h2>Player #${cardNumber}</h2>
     </div>
     <div id="card-teams">
     </div>
@@ -41,6 +41,7 @@ function createCard(cardNumber, numInputFields){
         inputField.id = `input-${(cardNumber-1) * perPlayer + i}`;
         inputField.name = `extra-field-${cardNumber}-${i}`;
         inputField.placeholder = `Player ${cardNumber} Team ${i}`;
+        inputField.classList.add('input-fields');
         cardTeams.appendChild(inputField);
     }
     return card;

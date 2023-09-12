@@ -1,16 +1,44 @@
 .card{
     border: 1px solid;
-    width: 30%;
+    display: flex;
+    flex-basis: min-content;
+    flex-wrap: wrap;
+    margin-top: 20px;
+    max-width: 30%;
+    min-width: 170px;
 }
 
 #cardsContainer{
+    justify-content: space-evenly;
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
+    margin-bottom: 20px;
+}
+
+.card-teams{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#card-top{
+    text-align: center;
+    width: 100%;
+}
+
+#card-top h2{
+    text-decoration: underline;
 }
 
 .checkbox-grid{
     display: grid;
     grid-template-columns: repeat(4,1fr);
     gap: 10px;
+}
+
+.input-fields{
+    margin: 10px 10px;
+    width: 150px;
 }
