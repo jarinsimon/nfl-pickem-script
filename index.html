@@ -7,19 +7,17 @@
         <title>NFL Pickem Script</title>
     </head>
     <body>
-        <div>
-            <h4>Number of Players in Pickem League:</h4>
+        <div id="header-bar">
+            <p>Number of Players in Pickem League:</p>
             <select id="numberDropdown">
                 <option value="-">-</option>
             </select>
-    
-        <button id='generateCards'>Generate Cards</button>
+            <button id='generateCards'>Generate Cards</button>
         </div>
+        <div id="player-names"></div>
         <div id="cardsContainer"></div>
-        <form id="teams">
-            <input type="submit" value="Submit">
-        </form>
         <div id="checkbox-container" class="checkbox-grid"></div>
+        <form id="teams"><input type="submit" value="Submit"></form>
         <script>
             var teamJSON = [];
             const form = document.getElementById("teams");
@@ -42,48 +40,33 @@
                         teamJSON.push(teamJSONObject);
                         
                     });
-                    teamJSON.sort((a,b) => a.teamName.localeCompare(b.teamName));
+                    teamJSON.sort((a,b) => a.teamNickName.localeCompare(b.teamNickName));
  
-                    for (let row = 0; row < 8; row++){
-                        for (let col = 0; col < 4; col++){
-                            const index = col * 8 + row;
+                    for (let row = 0; row < 4; row++){
+                        for (let col = 0; col < 8; col++){
+                            const index = col * 4 + row;
                             const item = teamJSON[index];
 
                             const itemDiv = document.createElement("div");
-                            itemDiv.className = "item";
+                            itemDiv.className = `team-button ${item.teamNickName}`;
+
+                            const label = document.createElement("label");
 
                             const checkbox = document.createElement("input");
                             checkbox.type = "checkbox";
                             checkbox.id = `${item.teamNickName}-checkbox`;
-                            checkbox.name = `${item.teamName}`;
+                            checkbox.name = `${item.teamNickName}`;
 
-                            const label = document.createElement("label");
-                            label.textContent = item.teamName;
-                            label.setAttribute("for", `${item.teamNickName}-checkbox`);
+                            const span = document.createElement("span");
+                            span.textContent = item.teamNickName;
 
-                            itemDiv.appendChild(checkbox);
+                            label.appendChild(checkbox);
+                            label.appendChild(span);
                             itemDiv.appendChild(label);
                             checkboxContainer.appendChild(itemDiv);
 
                         }
                     }
-                    // teamJSON.forEach(item=>{
-                    //     const itemDiv = document.createElement("div");
-                    //     itemDiv.className = "item";
-
-                    //     const checkbox = document.createElement("input");
-                    //     checkbox.type = "checkbox";
-                    //     checkbox.id = `${item.teamNickName}-checkbox`;
-                    //     checkbox.name = `${item.teamName}`;
-
-                    //     const label = document.createElement("label");
-                    //     label.textContent = item.teamName;
-                    //     label.setAttribute("for", `${item.teamNickName}-checkbox`);
-
-                    //     itemDiv.appendChild(checkbox);
-                    //     itemDiv.appendChild(label);
-                    //     checkboxContainer.appendChild(itemDiv);
-                    // })
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
             });
