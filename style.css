@@ -4,7 +4,6 @@
     flex-basis: min-content;
     flex-wrap: wrap;
     margin-top: 20px;
-    max-width: 30%;
     min-width: 170px;
 }
 
@@ -16,11 +15,20 @@
     margin-bottom: 20px;
 }
 
-.card-teams{
+.two{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+}
+
+.threeFour{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+}
+
+.fiveOrMore{
     display: flex;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: flex-start;
+    justify-content: center;
 }
 
 #card-top{
@@ -29,16 +37,61 @@
 }
 
 #card-top h2{
+    margin: 8px 0;
     text-decoration: underline;
 }
 
 .checkbox-grid{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(8,1fr);
     gap: 10px;
 }
 
+#header-bar{
+    align-items: center;
+    display: inline-flex;
+}
+
+#header-bar select{
+    height: 30px;
+    margin: 0 12px;
+}
+
+#header-bar button{
+    height: 30px;
+}
+
+#header-bar p{
+    font-weight: bold;
+}
+
 .input-fields{
+    height: 16px;
+    margin: 8px 8px;
+    width: 120px;
+}
+
+.name-input-fields{
     margin: 10px 10px;
-    width: 150px;
+    width: 140px;
+}
+
+.team-button{
+    align-items: center;
+    border: 1px solid black;
+    height: 24px;
+    margin: 4px;
+    width: 100px;
+}
+
+.team-button label span{
+    display: block;
+}
+
+.team-button label input{
+    display: none;
+}
+
+#teams{
+    margin-top: 16px;
 }
