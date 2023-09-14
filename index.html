@@ -12,12 +12,12 @@
             <select id="numberDropdown">
                 <option value="-">-</option>
             </select>
-            <button id='generateCards'>Generate Cards</button>
+            <button id='generateCards'>Confirm Names </button>
         </div>
         <div id="player-names"></div>
         <div id="cardsContainer"></div>
         <div id="checkbox-container" class="checkbox-grid"></div>
-        <form id="teams"><input type="submit" value="Submit"></form>
+        <form id="team-submit"><input type="submit" value="Submit"></form>
         <script>
             var teamJSON = [];
             const form = document.getElementById("teams");
@@ -27,7 +27,7 @@
                 fetch("config.json")
                 .then(response => response.json())
                 .then(data => {
-                    const checkboxContainer = document.getElementById("checkbox-container");
+                    
                     data.response.forEach(item=>{
                         var teamJSONObject = {
                             "teamID": item.team.id,
@@ -41,32 +41,6 @@
                         
                     });
                     teamJSON.sort((a,b) => a.teamNickName.localeCompare(b.teamNickName));
- 
-                    for (let row = 0; row < 4; row++){
-                        for (let col = 0; col < 8; col++){
-                            const index = col * 4 + row;
-                            const item = teamJSON[index];
-
-                            const itemDiv = document.createElement("div");
-                            itemDiv.className = `team-button ${item.teamNickName}`;
-
-                            const label = document.createElement("label");
-
-                            const checkbox = document.createElement("input");
-                            checkbox.type = "checkbox";
-                            checkbox.id = `${item.teamNickName}-checkbox`;
-                            checkbox.name = `${item.teamNickName}`;
-
-                            const span = document.createElement("span");
-                            span.textContent = item.teamNickName;
-
-                            label.appendChild(checkbox);
-                            label.appendChild(span);
-                            itemDiv.appendChild(label);
-                            checkboxContainer.appendChild(itemDiv);
-
-                        }
-                    }
                 })
                 .catch(error => console.error("Error fetching JSON data:", error));
             });
