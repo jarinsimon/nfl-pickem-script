@@ -82,6 +82,7 @@ function createCard(cardNumber, numInputFields, playerName){
 
 var perPlayer;
 var remainder;
+var start = 0;
 //When Generate Cards Button is pressed, update number of players and input fields
 generateCardsButton.addEventListener('click', (event) => {
     let playerNames = new Array(numPlayers);
@@ -100,6 +101,34 @@ generateCardsButton.addEventListener('click', (event) => {
     //Clear playerNameInput
     const playerNameInput = document.getElementById("player-name-inputs");
     playerNameInput.innerHTML = '';
+    const checkboxContainer = document.getElementById("checkbox-container");
+    for (let row = 0; row < 4; row++){
+        for (let col = 0; col < 8; col++){
+            
+            const index = col * 4 + row;
+            const item = teamJSON[index];
+    
+            const itemDiv = document.createElement("div");
+            itemDiv.className = `team-button ${item.teamNickName}`;
+            
+            const label = document.createElement("label");
+    
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.id = `${item.teamNickName}-checkbox`;
+            checkbox.name = `${item.teamNickName}`;
+    
+            const span = document.createElement("span");
+            span.textContent = item.teamNickName;
+    
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            itemDiv.appendChild(label);
+            checkboxContainer.appendChild(itemDiv);
+    
+        }
+    }
+
 });
 
 const checkboxes = document.getElementById("checkbox-container");
@@ -110,7 +139,10 @@ var inputCounter = 0;
 checkboxes.addEventListener('click', (event) =>{
     if (event.target.type === 'checkbox'){
         const checkbox = event.target;
-        var firstAvail = findFirstAvailableField();
+        var firstAvail = findFirstAvailableField(inputCounter);
+        if (firstAvail == -1){
+            return;
+        }
 
         //Add value of checkbox to input field
         if (event.target.checked){
@@ -128,7 +160,11 @@ checkboxes.addEventListener('click', (event) =>{
 });
 
 //Return value of the first
-function findFirstAvailableField(){
+function findFirstAvailableField(inputCounter){
+    if (inputCounter >= (32 - remainder)){
+        console.log("exited");
+        return -1;
+    }
     for (let i = 1; i <= 32; i++){
         const field = document.getElementById(`input-${i}`);
         if (field.value === ''){
