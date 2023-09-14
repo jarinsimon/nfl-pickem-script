@@ -78,6 +78,7 @@
 
 .team-button{
     align-items: center;
+    background-color: white;
     border: 1px solid black;
     display: flex;
     height: 48px;
@@ -92,6 +93,9 @@
 .team-button label span{
     align-items: center;
     display: flex;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 600;
     height: 100%;
     justify-content: center;
     width: 100%;
@@ -105,3 +109,166 @@
 #teams{
     margin-top: 16px;
 }
+
+.\34 9ers input:checked + span{ 
+    background-color: #AA0000;
+    color: #B3995D;
+}
+
+.Bears input:checked + span{ 
+    background-color: #0B162A;
+    color: #C83803;
+}
+
+.Bengals input:checked + span{ 
+    background-color: #FB4F14;
+    color: #000;
+}
+
+.Bills input:checked + span{ 
+    background-color: #00338d;
+    color: #c60c30;
+}
+
+.Broncos input:checked + span{ 
+    background-color: #FB4F14;
+    color: #002244;
+}
+
+.Browns input:checked + span{ 
+    background-color: #311D00;
+    color: #ff3c00;
+}
+
+.Buccaneers input:checked + span{ 
+    background-color: #D50A0A;
+    color: #FF7900;
+}
+
+.Cardinals input:checked + span{ 
+    background-color: #97233F;
+    color: #000;
+}
+
+.Chargers input:checked + span{ 
+    background-color: #0080c6;
+    color: #ffc20e;
+}
+
+.Chiefs input:checked + span{ 
+    background-color: #e31837;
+    color: #ffb81c;
+}
+
+.Colts input:checked + span{ 
+    background-color: #002c5f;
+    color: #FFFFFF;
+}
+
+.Commanders input:checked + span{ 
+    background-color: #5A1414;
+    color: #ffb612;;
+}
+
+.Cowboys input:checked + span{ 
+    background-color: #041E42;
+    color: #869397;
+}
+
+.Dolphins input:checked + span{ 
+    background-color: #008E97;
+    color: #fc4c02;
+}
+
+.Eagles input:checked + span{ 
+    background-color: #004C54;
+    color: #a5acaf;
+}
+
+.Falcons input:checked + span{ 
+    background-color: #A71930;
+    color: #000;
+}
+
+.Giants input:checked + span{ 
+    background-color: #0b2265;
+    color: #A71930;
+}
+
+.Jaguars input:checked + span{ 
+    background-color: #006778;
+    color: #D7A22A;
+}
+
+.Jets input:checked + span{ 
+    background-color: #125740;
+    color: #FFFFFF;
+}
+
+.Lions input:checked + span{ 
+    background-color: #0076B6;
+    color: #B0B7BC;
+}
+
+.Packers input:checked + span{ 
+    background-color: #203731;
+    color: #ffb612;
+}
+
+.Panthers input:checked + span{ 
+    background-color: #0085CA;
+    color: #101820;
+}
+
+.Patriots input:checked + span{ 
+    background-color: #002244;
+    color: #c60c30;
+}
+
+.Raiders input:checked + span{ 
+    background-color: #000;
+    color: #a5acaf;
+}
+
+.Rams input:checked + span{ 
+    background-color: #003594;
+    color: #FFA300;
+}
+
+.Ravens input:checked + span{ 
+    background-color: #241773;
+    color: #9E7C0C;
+}
+
+.Saints input:checked + span{ 
+    background-color: #D3BC8D;
+    color: #101820;
+}
+
+.Seahawks input:checked + span{ 
+    background-color: #002244;
+    color: #69be28;
+}
+
+.Steelers input:checked + span{ 
+    background-color: #FFB612;
+    color: #101820;
+}
+
+.Texans input:checked + span{ 
+    background-color: #03202F;
+    color: #A71930;
+}
+
+.Titans input:checked + span{ 
+    background-color: #0C2340;
+    color: #4B92DB;
+}
+
+.Vikings input:checked + span{ 
+    background-color: #4F2683;
+    color: #ffc62f;
+}
+
+
+
